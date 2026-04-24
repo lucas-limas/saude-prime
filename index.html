@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saúde Prime | Planos de Saúde em Brasília</title>
+  <meta name="description" content="Saúde Prime – corretora especializada em planos de saúde no DF. Encontre o plano ideal para você, sua família ou empresa. Cotação 100% gratuita pelo WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    
+    /* ── TOKENS (Design System - Tema Dark/White) ──────────────────────── */
+    :root {
+      /* Fundo escuro principal (Tons de Chumbo/Cinza da sua paleta) */
+      --emerald:    #1f1e1e; 
+      --emerald-mid:#292727; 
+      --emerald-lt: #8C8C8C; 
+      
+      /* Destaques em BRANCO (Substitui todo o antigo Dourado) */
+      --gold:       #FFFFFF; 
+      --gold-lt:    #F9F9F9; /* Um branco quase puro para manter textura */
+      
+      /* Fundos claros da página (Cinza gelo para visual corporativo) */
+      --cream:      #F7F7F7; 
+      --cream-dk:   #EBEBEB; 
+      
+      /* Cores de texto */
+      --charcoal:   #1F1F1F; 
+      --muted:      #000000; 
+      --white:      #FFFFFF; 
+      
+      /* Variáveis estruturais mantidas */
+      --radius:     14px;
+      --shadow-sm:  0 2px 12px rgba(0,0,0,.08);
+      --shadow-md:  0 8px 32px rgba(0,0,0,.12);
+      --shadow-lg:  0 20px 60px rgba(0,0,0,.18);
+      --font-head:  'Montserrat', sans-serif;
+      --font-body:  'Poppins', sans-serif;
+      
+      /* Mantemos o verde oficial para o botão de conversão não perder destaque */
+      --wpp:        #25D366; 
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── UTILITIES ───────────────────────────────────── */
+    .container { width: 90%; max-width: 1160px; margin: 0 auto; }
+    .tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .28rem .8rem;
+      border-radius: 99px;
+    }
+    .tag--gold  { background: var(--gold-lt); color: var(--emerald); }
+    .tag--green { background: rgb(18, 146, 80); color: var(--emerald-mid); }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--font-body); font-size: .93rem; font-weight: 600;
+      padding: .82rem 1.8rem; border-radius: 99px; cursor: pointer;
+      border: 2px solid transparent; transition: all .25s ease;
+    }
+    .btn--primary {
+      background: var(--gold); color: var(--emerald);
+      box-shadow: 0 4px 20px rgb(255, 255, 255);
+    }
+    .btn--primary:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(54, 54, 53, 0.986); }
+    .btn--outline-white { border-color: rgba(250, 248, 248, 0.6); color: var(--white); }
+    .btn--outline-white:hover { background: rgba(248, 247, 247, 0.151); }
+    .btn--wpp {
+      background: var(--wpp); color: var(--white);
+      box-shadow: 0 4px 20px rgba(37,211,102,.35);
+    }
+    .btn--wpp:hover { background: #1ebe5d; transform: translateY(-2px); }
+    .btn--ghost-green {
+      border-color: var(--emerald-mid); color: var(--emerald);
+    }
+    .btn--ghost-green:hover { background: var(--emerald); color: var(--white); }
+    .section-label {
+      font-family: var(--font-body);
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--emerald-lt); margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      font-weight: 800; line-height: 1.15; letter-spacing: -.02em;
+      color: var(--emerald);
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--muted);
+      max-width: 560px; margin-top: .8rem;
+    }
+
+    /* ── SCROLL ANIMATION ────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-l { opacity: 0; transform: translateX(-32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-l.visible { opacity: 1; transform: none; }
+    .reveal-r { opacity: 0; transform: translateX(32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-r.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: .1s; }
+    .delay-2 { transition-delay: .2s; }
+    .delay-3 { transition-delay: .3s; }
+    .delay-4 { transition-delay: .4s; }
+    .delay-5 { transition-delay: .5s; }
+
+    /* ── NOISE OVERLAY ───────────────────────────────── */
+    .noise::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1;
+    }
+
+    /* ── NAVBAR ──────────────────────────────────────── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      padding: 1rem 0;
+      transition: background .35s, box-shadow .35s, padding .35s;
+    }
+    #navbar.scrolled {
+      background: rgba(244,244,244,.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(26,26,26,.10);
+      padding: .65rem 0;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: .7rem;
+    }
+    .nav-logo-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-lt) 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-logo-icon svg { width: 24px; height: 24px; fill: var(--gold); }
+    .nav-logo-text { line-height: 1.1; }
+    .nav-logo-text strong {
+      display: block; font-family: var(--font-head);
+      font-size: 1.1rem; font-weight: 900; letter-spacing: .06em; color: var(--emerald);
+    }
+    .nav-logo-text span {
+      font-size: .68rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .9rem; font-weight: 500; color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--emerald); }
+    .nav-cta { display: flex; align-items: center; gap: .75rem; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--emerald); border-radius: 2px; transition: all .3s; }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 800;
+      background: var(--cream); flex-direction: column;
+      align-items: center; justify-content: center; gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--font-head); font-size: 1.8rem; font-weight: 900; letter-spacing: -.02em; color: var(--emerald); }
+    .mobile-close {
+      position: absolute; top: 1.5rem; right: 5%;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.8rem; color: var(--muted);
+    }
+
+    /* ── HERO ────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(160deg, #0F0F0F 0%, #1A1A1A 45%, #2E2E2E 100%);
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        radial-gradient(circle at 18% 22%, rgba(131, 129, 129, 0.705) 0%, transparent 45%),
+        radial-gradient(circle at 82% 78%, rgba(31, 32, 32, 0.267) 0%, transparent 40%),
+        radial-gradient(circle at 60% 10%, rgba(245, 215, 215, 0.096) 0%, transparent 40%);
+    }
+    .hero-leaf {
+      position: absolute; right: -60px; bottom: -40px;
+      width: 480px; height: 480px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(250, 248, 245, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-ring {
+      position: absolute; top: 10%; right: 8%;
+      width: 320px; height: 320px; border-radius: 50%;
+      border: 1.5px solid rgba(235, 232, 227, 0.452);
+      pointer-events: none;
+    }
+    .hero-ring::after {
+      content: ''; position: absolute; inset: 30px; border-radius: 50%;
+      border: 1px solid rgba(230, 228, 226, 0.459);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 8rem 0 5rem;
+      display: grid; grid-template-columns: 1fr 420px; gap: 3rem; align-items: center;
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: .6rem; margin-bottom: 1.4rem;
+    }
+    .hero-eyebrow-line { width: 28px; height: 2px; background: var(--gold); }
+    .hero-eyebrow span {
+      font-size: .75rem; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--gold-lt);
+    }
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+      font-weight: 900; line-height: 1.06; letter-spacing: -.03em;
+      color: var(--white); margin-bottom: 1.4rem;
+      text-transform: uppercase;
+    }
+    .hero-title em { color: var(--gold-lt); font-style: normal; }
+    .hero-sub {
+      font-size: 1.08rem; color: rgba(255,255,255,.82);
+      max-width: 500px; line-height: 1.7; margin-bottom: 2.4rem;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .hero-trust {
+      margin-top: 3rem;
+      display: flex; gap: 2rem; flex-wrap: wrap;
+    }
+    .hero-trust-item {
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .hero-trust-item svg { width: 16px; height: 16px; fill: var(--gold); flex-shrink: 0; }
+    .hero-trust-item span { font-size: .82rem; color: rgba(255,255,255,.75); }
+    /* Hero card */
+    .hero-card {
+      background: rgba(255,255,255,.97);
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-card h3 {
+      font-family: var(--font-head);
+      font-size: 1.2rem; font-weight: 800; letter-spacing: -.02em; color: var(--emerald);
+      margin-bottom: .3rem;
+    }
+    .hero-card p { font-size: .85rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: .78rem; font-weight: 600; color: var(--emerald); margin-bottom: .35rem; }
+    .form-group input, .form-group select {
+      width: 100%; padding: .72rem 1rem;
+      border: 1.5px solid var(--cream-dk); border-radius: 10px;
+      font-family: var(--font-body); font-size: .9rem; color: var(--charcoal);
+      background: var(--cream); outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: var(--emerald-lt); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+    .form-submit { width: 100%; margin-top: .4rem; justify-content: center; }
+    .form-note { text-align: center; font-size: .73rem; color: var(--muted); margin-top: .7rem; }
+
+    /* ── STATS BAR ───────────────────────────────────── */
+    #stats {
+      background: var(--emerald);
+      padding: 2.4rem 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .stats-grid::before {
+      display: none;
+    }
+    .stat-item { position: relative; }
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute; right: 0; top: 15%; bottom: 15%;
+      width: 1px; background: rgba(255,255,255,.15);
+    }
+    .stat-number {
+      font-family: var(--font-head);
+      font-size: 2.6rem; font-weight: 700;
+      color: var(--gold-lt); line-height: 1;
+    }
+    .stat-label { font-size: .8rem; color: rgba(255,255,255,.65); margin-top: .3rem; }
+
+    /* ── BENEFITS ────────────────────────────────────── */
+    #benefits { padding: 7rem 0; }
+    .benefits-header { text-align: center; margin-bottom: 3.5rem; }
+    .benefits-header .section-sub { margin: .8rem auto 0; }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .benefit-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem 1.8rem;
+      border: 1.5px solid transparent;
+      box-shadow: var(--shadow-sm);
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+    }
+    .benefit-card:hover {
+      border-color: var(--emerald-lt);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .benefit-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(26,26,26,.07) 0%, rgba(189, 188, 188, 0.459) 100%);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .benefit-icon svg { width: 26px; height: 26px; }
+    .benefit-card h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 800; letter-spacing: -.01em; color: var(--emerald); margin-bottom: .5rem; }
+    .benefit-card p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── PLANS ───────────────────────────────────────── */
+    #plans {
+      background: var(--emerald);
+      padding: 7rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .plans-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(circle at 90% 10%, rgba(248, 248, 247, 0.404) 0%, transparent 50%),
+                        radial-gradient(circle at 10% 90%, rgba(238, 237, 236, 0.452) 0%, transparent 50%);
+    }
+    .plans-header { text-align: center; margin-bottom: 3.5rem; position: relative; z-index: 1; }
+    .plans-header .section-label { color: var(--gold-lt); }
+    .plans-header .section-title { color: var(--white); }
+    .plans-header .section-sub { color: rgba(255,255,255,.7); margin: .8rem auto 0; }
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .plan-card {
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 2.4rem 2rem;
+      transition: background .3s, border-color .3s, transform .3s;
+      position: relative;
+    }
+    .plan-card:hover { background: rgba(255,255,255,.1); border-color: rgba(224, 222, 217, 0.5); transform: translateY(-5px); }
+    .plan-card.featured {
+      background: var(--white);
+      border-color: var(--gold);
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+    .plan-card.featured:hover { transform: translateY(-8px); }
+    .plan-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: var(--emerald);
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; padding: .3rem 1rem; border-radius: 99px;
+    }
+    .plan-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.3rem;
+    }
+    .plan-card:not(.featured) .plan-icon { background: rgba(241, 241, 241, 0.15); }
+    .plan-card.featured .plan-icon { background: linear-gradient(135deg, var(--emerald), var(--emerald-lt)); }
+    .plan-icon svg { width: 28px; height: 28px; }
+    .plan-card:not(.featured) .plan-icon svg { fill: var(--gold-lt); }
+    .plan-card.featured .plan-icon svg { fill: var(--white); }
+    .plan-card h3 {
+      font-family: var(--font-head); font-size: 1.25rem; font-weight: 800;
+      letter-spacing: -.01em; margin-bottom: .4rem;
+    }
+    .plan-card:not(.featured) h3 { color: var(--white); }
+    .plan-card.featured h3 { color: var(--emerald); }
+    .plan-card > p {
+      font-size: .85rem; margin-bottom: 1.5rem;
+    }
+    .plan-card:not(.featured) > p { color: rgba(255,255,255,.65); }
+    .plan-card.featured > p { color: var(--muted); }
+    .plan-features { list-style: none; margin-bottom: 2rem; }
+    .plan-features li {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .86rem; padding: .42rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .plan-card.featured .plan-features li { border-bottom-color: var(--cream-dk); }
+    .plan-features li::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .plan-card:not(.featured) .plan-features li { color: rgba(255,255,255,.78); }
+    .plan-card:not(.featured) .plan-features li::before { background: var(--gold); }
+    .plan-card.featured .plan-features li { color: var(--muted); }
+    .plan-card.featured .plan-features li::before { background: var(--emerald-lt); }
+    .plan-cta { width: 100%; justify-content: center; }
+    .plan-card:not(.featured) .plan-cta { border-color: rgba(255,255,255,.35); color: var(--white); }
+    .plan-card:not(.featured) .plan-cta:hover { background: rgba(255,255,255,.1); }
+
+    /* ── HOW IT WORKS ────────────────────────────────── */
+    #how { padding: 7rem 0; }
+    .how-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .how-steps { list-style: none; }
+    .how-step {
+      display: flex; gap: 1.4rem;
+      padding: 1.6rem 0; border-bottom: 1px solid var(--cream-dk);
+    }
+    .how-step:last-child { border-bottom: none; }
+    .step-num {
+      flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--emerald); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 1.2rem; font-weight: 700;
+    }
+    .step-body h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 800; letter-spacing: -.01em; color: var(--emerald); margin-bottom: .3rem; }
+    .step-body p { font-size: .87rem; color: var(--muted); line-height: 1.65; }
+    .how-visual {
+      position: relative;
+    }
+    .how-visual-card {
+      background: var(--emerald);
+      border-radius: 20px;
+      padding: 2.5rem;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .how-visual-card::before {
+      content: '';
+      position: absolute; top: -40px; right: -40px;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: rgba(247, 246, 245, 0.15);
+    }
+    .how-visual-big {
+      font-family: var(--font-head);
+      font-size: 5rem; font-weight: 700;
+      color: rgba(226, 224, 218, 0.25); line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .how-visual-card h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 800; letter-spacing: -.01em; color: var(--gold-lt); margin-bottom: 1rem; }
+    .how-visual-card p { font-size: .9rem; color: rgba(255,255,255,.75); margin-bottom: 1.8rem; }
+    .how-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(255,255,255,.1); border-radius: 99px;
+      padding: .4rem 1rem; font-size: .78rem; color: rgba(255,255,255,.85);
+    }
+    .how-badge::before { content: '✓'; color: var(--gold); font-weight: 700; }
+
+    /* ── OPERATORS ───────────────────────────────────── */
+    #operators {
+      background: var(--cream-dk);
+      padding: 4.5rem 0;
+      text-align: center;
+    }
+    .op-label { font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2.2rem; }
+    .op-grid {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 1.2rem;
+    }
+    .op-chip {
+      background: var(--white); border-radius: 99px;
+      padding: .75rem 1.6rem;
+      font-size: .9rem; font-weight: 600; color: var(--emerald);
+      box-shadow: var(--shadow-sm);
+      border: 1.5px solid transparent;
+      transition: border-color .25s, transform .25s;
+    }
+    .op-chip:hover { border-color: var(--emerald-lt); transform: translateY(-2px); }
+
+    /* ── TESTIMONIALS ────────────────────────────────── */
+    #testimonials { padding: 7rem 0; }
+    .t-header { text-align: center; margin-bottom: 3.5rem; }
+    .t-header .section-sub { margin: .8rem auto 0; }
+    .t-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .t-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem 1.8rem;
+      box-shadow: var(--shadow-sm);
+      border: 1.5px solid transparent;
+      transition: border-color .25s, transform .25s;
+    }
+    .t-card:hover { border-color: var(--emerald-lt); transform: translateY(-3px); }
+    .t-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: .9rem; }
+    .t-text { font-size: .9rem; color: var(--charcoal); line-height: 1.7; margin-bottom: 1.4rem; font-style: italic; }
+    .t-author { display: flex; align-items: center; gap: .75rem; }
+    .t-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--emerald), var(--emerald-lt));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--white);
+    }
+    .t-name { font-size: .88rem; font-weight: 600; color: var(--emerald); }
+    .t-role { font-size: .76rem; color: var(--muted); }
+
+    /* ── FAQ ─────────────────────────────────────────── */
+    #faq { background: var(--cream-dk); padding: 7rem 0; }
+    .faq-inner { display: grid; grid-template-columns: 340px 1fr; gap: 5rem; align-items: start; }
+    .faq-list { display: flex; flex-direction: column; gap: .7rem; }
+    .faq-item {
+      background: var(--white); border-radius: 12px;
+      overflow: hidden; box-shadow: var(--shadow-sm);
+    }
+    .faq-q {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 1.4rem; background: none; border: none;
+      font-family: var(--font-body); font-size: .93rem; font-weight: 600;
+      color: var(--emerald); cursor: pointer; text-align: left; gap: 1rem;
+    }
+    .faq-q svg {
+      flex-shrink: 0; width: 18px; height: 18px; fill: var(--emerald-lt);
+      transition: transform .3s;
+    }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .35s;
+      font-size: .88rem; color: var(--muted); line-height: 1.7;
+      padding: 0 1.4rem;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 1.4rem 1.2rem; }
+
+    /* ── CTA SECTION ─────────────────────────────────── */
+    #cta {
+      background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-mid) 100%);
+      padding: 6rem 0; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    #cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(250, 250, 250, 0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-content { position: relative; z-index: 1; }
+    #cta .section-title { color: var(--white); margin-bottom: .7rem; }
+    #cta .section-sub { color: rgba(255,255,255,.75); margin: 0 auto 2.2rem; }
+    .cta-actions { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .cta-phone {
+      font-size: .9rem; color: rgba(255,255,255,.8); margin-top: 1.4rem;
+    }
+    .cta-phone a { color: var(--gold-lt); font-weight: 600; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--charcoal);
+      padding: 3.5rem 0 2rem;
+      color: rgba(255,255,255,.6);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 2.5rem; margin-bottom: 2.5rem;
+    }
+    .footer-brand p { font-size: .84rem; line-height: 1.7; margin-top: .9rem; max-width: 240px; }
+    .footer-brand .nav-logo-text strong { color: var(--white); }
+    .footer-col h4 {
+      font-size: .78rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.4);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+    .footer-col ul li a { font-size: .85rem; color: rgba(255,255,255,.55); transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 1.8rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .78rem; }
+    .footer-cnpj { font-size: .72rem; color: rgba(255,255,255,.3); }
+    .social-links { display: flex; gap: .75rem; }
+    .social-link {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,.07);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .social-link:hover { background: rgba(255,255,255,.15); }
+    .social-link svg { width: 16px; height: 16px; fill: rgba(255,255,255,.6); }
+
+    /* ── FLOATING WPP ────────────────────────────────── */
+    #wpp-float {
+      position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 800;
+      display: flex; flex-direction: column; align-items: flex-end; gap: .6rem;
+    }
+    .wpp-bubble {
+      background: var(--white);
+      border-radius: 12px 12px 0 12px;
+      padding: .65rem 1rem;
+      font-size: .82rem; font-weight: 600; color: var(--emerald);
+      box-shadow: var(--shadow-md);
+      transform-origin: bottom right;
+      animation: wppPop .4s ease .8s both;
+    }
+    @keyframes wppPop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+    .wpp-btn {
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--wpp);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,.4);
+      transition: transform .25s;
+    }
+    .wpp-btn:hover { transform: scale(1.1); }
+    .wpp-btn svg { width: 28px; height: 28px; fill: var(--white); }
+    .wpp-pulse {
+      position: absolute; top: 0; right: 0;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #ff4444;
+      border: 2px solid var(--white);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-card { max-width: 480px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .faq-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta .btn:not(.btn--wpp) { display: none; }
+      .hamburger { display: flex; }
+      .benefits-grid, .plans-grid, .t-grid { grid-template-columns: 1fr; }
+      .how-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-ring { display: none; }
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.5 2 5.5 4 4 7c-.5 1-.8 2.2-.8 3.5 0 5 3.8 9.5 8.8 11.5 5-2 8.8-6.5 8.8-11.5 0-1.3-.3-2.5-.8-3.5C18.5 4 15.5 2 12 2zm0 2c2.5 0 4.8 1.5 5.8 3.8.4.8.6 1.7.6 2.7 0 4-3 7.8-6.4 9.7C8.6 18.3 5.6 14.5 5.6 10.5c0-1 .2-1.9.6-2.7C7.2 5.5 9.5 4 12 4z"/>
+            <path d="M10.5 7.5v3H7.5v3h3v3h3v-3h3v-3h-3v-3z"/>
+          </svg>
+        </div>
+        <div class="nav-logo-text">
+          <strong>Saúde Prime</strong>
+          <span>Seguros &amp; Saúde</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#benefits">Vantagens</a></li>
+        <li><a href="#plans">Planos</a></li>
+        <li><a href="#how">Como Funciona</a></li>
+        <li><a href="#faq">Dúvidas</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="https://wa.me/message/RQE6YYE64XKAK1?text=Olá!%20Gostaria%20de%20fazer%20uma%20cotação%20de%20plano%20de%20saúde." class="btn btn--wpp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotar Agora
+        </a>
+        <button class="hamburger" id="menuBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="menuClose">✕</button>
+  <a href="#benefits" class="mobile-link">Vantagens</a>
+  <a href="#plans" class="mobile-link">Planos</a>
+  <a href="#how" class="mobile-link">Como Funciona</a>
+  <a href="#faq" class="mobile-link">Dúvidas</a>
+  <a href="https://wa.me/message/RQE6YYE64XKAK1" class="btn btn--wpp" target="_blank">Cotar pelo WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-leaf"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div>
+        <div class="hero-eyebrow reveal">
+          <div class="hero-eyebrow-line"></div>
+          <span>Corretora Autorizada · Brasília – DF</span>
+        </div>
+        <h1 class="hero-title reveal delay-1">
+          O plano de saúde <em>certo</em><br>para você e sua empresa
+        </h1>
+        <p class="hero-sub reveal delay-2">
+          Especialistas em planos de saúde no Distrito Federal. Consultoria gratuita, processo 100% online e as melhores operadoras do mercado — tudo num só lugar.
+        </p>
+        <div class="hero-actions reveal delay-3">
+          <a href="https://wa.me/message/RQE6YYE64XKAK1?text=Olá!%20Gostaria%20de%20uma%20cotação%20de%20plano%20de%20saúde." class="btn btn--primary" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Cotação Gratuita
+          </a>
+          <a href="#how" class="btn btn--outline-white">Como funciona</a>
+        </div>
+        <div class="hero-trust reveal delay-4">
+          <div class="hero-trust-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>Atendimento especializado</span>
+          </div>
+          <div class="hero-trust-item">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <span>Sem visitas domiciliares</span>
+          </div>
+          <div class="hero-trust-item">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <span>Registro SUSEP regulamentado</span>
+          </div>
+        </div>
+      </div>
+      <!-- QUICK QUOTE CARD -->
+      <div class="hero-card reveal-r delay-2">
+        <h3>Cotação Rápida</h3>
+        <p>Receba valores em minutos, sem compromisso.</p>
+        <form id="quoteForm" onsubmit="submitForm(event)">
+          <div class="form-group">
+            <label for="f-name">Seu nome</label>
+            <input type="text" id="f-name" placeholder="Ex.: João Silva" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-phone">WhatsApp</label>
+              <input type="tel" id="f-phone" placeholder="(61) 9 9999-9999" required />
+            </div>
+            <div class="form-group">
+              <label for="f-lives">Vidas</label>
+              <select id="f-lives">
+                <option>1 pessoa</option>
+                <option>2 pessoas</option>
+                <option>3 pessoas</option>
+                <option>4+ pessoas</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-type">Tipo de plano</label>
+            <select id="f-type">
+              <option>Individual / Familiar</option>
+              <option>Empresarial (PME)</option>
+              <option>Adesão</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn--wpp form-submit">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Receber Cotação
+          </button>
+          <p class="form-note">🔒 Seus dados são protegidos e usados apenas para cotação.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-number">+500</div>
+        <div class="stat-label">Clientes atendidos no DF</div>
+      </div>
+      <div class="stat-item reveal delay-1">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Processo online</div>
+      </div>
+      <div class="stat-item reveal delay-2">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Operadoras — Amil, Bradesco e +</div>
+      </div>
+      <div class="stat-item reveal delay-3">
+        <div class="stat-number">24h</div>
+        <div class="stat-label">Retorno garantido via WhatsApp</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="container">
+    <div class="benefits-header">
+      <p class="section-label reveal">Por que a Saúde Prime?</p>
+      <h2 class="section-title reveal delay-1">Sua saúde merece a melhor consultoria</h2>
+      <p class="section-sub reveal delay-2">Somos uma corretora autorizada que coloca você no centro — sem pressão, sem enrolação.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#054A29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.06 6.06l1.27-.45a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <h3>Atendimento Humanizado</h3>
+        <p>Consultores reais, prontos para ouvir sua necessidade e indicar o plano ideal — sem robôs, sem formulários intermináveis.</p>
+      </div>
+      <div class="benefit-card reveal delay-1">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#054A29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>100% Online</h3>
+        <p>Do primeiro contato à assinatura do contrato, tudo pelo celular. Sem visita em casa, sem deslocamento, sem perder tempo.</p>
+      </div>
+      <div class="benefit-card reveal delay-2">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#054A29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Corretora Regulamentada</h3>
+        <p>Empresa registrada na SUSEP e habilitada pela ANS. Você tem toda a segurança jurídica que o seu contrato merece.</p>
+      </div>
+      <div class="benefit-card reveal delay-1">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#054A29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3>Comparamos por Você</h3>
+        <p>Analisamos todas as operadoras disponíveis no DF e apresentamos as melhores opções de custo-benefício para o seu perfil.</p>
+      </div>
+      <div class="benefit-card reveal delay-2">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#054A29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3>Cotação Gratuita</h3>
+        <p>Nossa consultoria é sempre sem custo para você. Ganhamos apenas uma comissão da operadora — seu bolso fica no zero.</p>
+      </div>
+      <div class="benefit-card reveal delay-3">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#054A29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Planos para Todos</h3>
+        <p>Pessoa física, família ou empresa: temos o plano certo para cada situação, com cobertura nacional e hospitais de referência.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans">
+  <div class="plans-bg"></div>
+  <div class="container">
+    <div class="plans-header">
+      <p class="section-label reveal">Tipos de Plano</p>
+      <h2 class="section-title reveal delay-1">Encontre o plano que encaixa na sua vida</h2>
+      <p class="section-sub reveal delay-2">Especialistas em planos para <strong style="color:var(--gold-lt)">MEI, empresários e PME</strong> no DF — e também para pessoa física e família.</p>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card reveal">
+        <div class="plan-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <h3>Individual / Familiar</h3>
+        <p>Cobertura completa para você e sua família, com liberdade de escolha da operadora.</p>
+        <ul class="plan-features">
+          <li>Consultas, exames e internações</li>
+          <li>Maternidade e pediatria</li>
+          <li>Urgência e emergência</li>
+          <li>Rede credenciada no DF e nacional</li>
+          <li>Reajuste controlado pela ANS</li>
+        </ul>
+        <a href="https://wa.me/message/RQE6YYE64XKAK1?text=Olá!%20Tenho%20interesse%20no%20plano%20Individual%20ou%20Familiar." class="btn btn--outline plan-cta" target="_blank">Quero Este Plano</a>
+      </div>
+      <div class="plan-card featured reveal delay-1">
+        <div class="plan-badge">Nossa Especialidade</div>
+        <div class="plan-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.34C18 2.06 15.96 0 13.41 0c-1.34 0-2.47.57-3.38 1.46L9 3.35 7.97 1.46C7.06.57 5.93 0 4.59 0 2.04 0 0 2.06 0 4.66c0 .46.11.9.18 1.34H0v2h20V6zm-9.41-4c.82 0 1.59.33 2.13.87L14 4H10l1.28-1.13C11.82 2.33 12.59 2 13.41 2H10.59zm-6.82 0c.82 0 1.59.33 2.13.87L7 4H3l1.28-1.13C4.82 2.33 5.59 2 6.41 2h-2.64zM2 10v10a2 2 0 002 2h4v-8h4v8h4a2 2 0 002-2V10H2z"/></svg>
+        </div>
+        <h3>Empresarial / MEI</h3>
+        <p>Plano no CNPJ para MEI, autônomos e empresas — com vantagens fiscais que pessoa física não tem.</p>
+        <ul class="plan-features">
+          <li>Plano no CNPJ (MEI, ME, LTDA)</li>
+          <li>Dedução no IRPF para empresários</li>
+          <li>A partir de 1 vida (MEI e autônomo)</li>
+          <li>Cobertura para sócios e dependentes</li>
+          <li>Desconto por volume de colaboradores</li>
+          <li>Gestão pelo RH e suporte dedicado</li>
+        </ul>
+        <a href="https://wa.me/message/RQE6YYE64XKAK1?text=Olá!%20Tenho%20interesse%20no%20plano%20Empresarial%20ou%20MEI." class="btn btn--primary plan-cta" target="_blank">Quero Este Plano</a>
+      </div>
+      <div class="plan-card reveal delay-2">
+        <div class="plan-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        </div>
+        <h3>Adesão / Coletivo</h3>
+        <p>Planos coletivos por adesão com mensalidades mais acessíveis para diferentes categorias.</p>
+        <ul class="plan-features">
+          <li>Entidades de classe e sindicatos</li>
+          <li>Menor custo por ser coletivo</li>
+          <li>Cobertura nacional</li>
+          <li>Sem necessidade de empresa</li>
+          <li>Suporte pós-contratação</li>
+        </ul>
+        <a href="https://wa.me/message/RQE6YYE64XKAK1?text=Olá!%20Tenho%20interesse%20no%20plano%20de%20Adesão." class="btn btn--outline plan-cta" target="_blank">Quero Este Plano</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="how-inner">
+      <div>
+        <p class="section-label reveal">Como Funciona</p>
+        <h2 class="section-title reveal delay-1">Do primeiro contato ao plano ativado em 3 passos</h2>
+        <ol class="how-steps">
+          <li class="how-step reveal delay-1">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>Fale com um Especialista</h4>
+              <p>Entre em contato via WhatsApp ou preencha o formulário de cotação. Um consultor da Saúde Prime responderá em até 24 horas.</p>
+            </div>
+          </li>
+          <li class="how-step reveal delay-2">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Receba as Melhores Opções</h4>
+              <p>Analisamos seu perfil e enviamos uma comparação personalizada com as melhores coberturas e valores disponíveis no DF.</p>
+            </div>
+          </li>
+          <li class="how-step reveal delay-3">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4>Ative Seu Plano Online</h4>
+              <p>Escolheu o plano? Assinatura digital, envio de documentos pelo celular e plano ativo em poucos dias — sem burocracia.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="reveal-r delay-2">
+        <div class="how-visual-card">
+          <div class="how-visual-big">24h</div>
+          <h3>Retorno garantido em até 24 horas</h3>
+          <p>Nossa equipe está pronta para atender você com agilidade. Nenhuma dúvida fica sem resposta.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem;">
+            <span class="how-badge">Atendimento via WhatsApp</span>
+            <span class="how-badge">Sem visitas domiciliares</span>
+            <span class="how-badge">Documentos 100% digitais</span>
+            <span class="how-badge">Suporte pós-contratação</span>
+          </div>
+          <a href="https://wa.me/message/RQE6YYE64XKAK1?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20planos%20de%20saúde." class="btn btn--primary" style="margin-top:1.8rem;" target="_blank">Falar Agora no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATORS -->
+<section id="operators">
+  <div class="container">
+    <p class="op-label reveal">Operadoras que trabalhamos</p>
+    <div class="op-grid">
+      <span class="op-chip reveal delay-1">Amil</span>
+      <span class="op-chip reveal delay-2">Bradesco Saúde</span>
+      <span class="op-chip reveal delay-1">SulAmérica</span>
+      <span class="op-chip reveal delay-2">Plenum Saúde</span>
+      <span class="op-chip reveal delay-1">Unimed</span>
+      <span class="op-chip reveal delay-2">Porto Saúde</span>
+      <span class="op-chip reveal delay-3">Med Senior</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="t-header">
+      <p class="section-label reveal">Depoimentos</p>
+      <h2 class="section-title reveal delay-1">Quem confiou na Saúde Prime</h2>
+      <p class="section-sub reveal delay-2">Centenas de famílias e empresas no DF escolheram nossa consultoria para proteger o que mais importa.</p>
+    </div>
+    <div class="t-grid">
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Estávamos com um problema super complexo no nosso plano de saúde que ia interferir até nas nossas decisões de parto, e nenhuma outra corretora conseguia dar jeito. Quando já estávamos super aflitos e quase desistindo, o Michael encontrou a @prime.segurosesaude no Google e, com apenas uma dica da Duda, conseguimos resolver tudo, o que nos trouxe um alívio inexplicável!"</p>
+        <div class="t-author">
+          <div class="t-avatar">J</div>
+          <div>
+            <div class="t-name">Joana Iza</div>
+            <div class="t-role">Plano Empresarial · Brasília</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card reveal delay-1">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Contratei o plano familiar pela Saúde Prime e foi a melhor decisão. Me mostraram opções que eu nunca teria encontrado sozinho, com um preço bem abaixo do que eu pagava."</p>
+        <div class="t-author">
+          <div class="t-avatar">R</div>
+          <div>
+            <div class="t-name">Ricardo Fernandes</div>
+            <div class="t-role">Plano Familiar · Taguatinga</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card reveal delay-2">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Como empresária, precisava de um plano corporativo ágil. A equipe da Saúde Prime entendeu minha necessidade e fechamos o contrato para 12 colaboradores sem complicação."</p>
+        <div class="t-author">
+          <div class="t-avatar">A</div>
+          <div>
+            <div class="t-name">Aline Castro</div>
+            <div class="t-role">Plano Empresarial · Plano Piloto</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div>
+        <p class="section-label reveal">Dúvidas Frequentes</p>
+        <h2 class="section-title reveal delay-1">Perguntas que nossos clientes fazem</h2>
+        <p class="section-sub reveal delay-2">Não encontrou sua resposta? Fale conosco pelo WhatsApp!</p>
+        <a href="https://wa.me/message/RQE6YYE64XKAK1?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20planos%20de%20saúde." class="btn btn--ghost-green reveal delay-3" style="margin-top:1.6rem;" target="_blank">
+          Perguntar pelo WhatsApp
+        </a>
+      </div>
+      <div class="faq-list reveal delay-2">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Como funciona a cotação gratuita?
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Você nos envia seu perfil (idade, tipo de plano e preferências) pelo WhatsApp ou pelo formulário. Em até 24h recebe uma comparação personalizada com valores e coberturas — sem custo algum para você.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Preciso pagar pela consultoria da Saúde Prime?
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Não. Nossa consultoria é 100% gratuita para o cliente. Somos remunerados diretamente pelas operadoras, então você recebe o mesmo preço ou melhor do que encontraria contratando direto.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Quais operadoras vocês trabalham?
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Trabalhamos com as principais operadoras do Brasil: Amil, Bradesco Saúde, SulAmérica, Hapvida, NotreDame Intermédica, Unimed, Porto Seguro Saúde e outras. Sempre indicamos a melhor para o seu perfil.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Qual é o prazo para o plano ficar ativo?
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Após a assinatura do contrato e envio dos documentos, a maioria dos planos fica ativo entre 1 e 5 dias úteis. Avisamos você assim que a operadora confirmar.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Posso contratar mesmo com doença preexistente?
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Sim. A ANS garante que toda pessoa pode contratar um plano de saúde. Doenças preexistentes podem ter carência diferenciada, mas nossa equipe orienta o caminho mais adequado para o seu caso.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Vocês atendem fora de Brasília?
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Somos baseados no Distrito Federal, mas como nosso atendimento é 100% online, atendemos clientes de todo o Brasil. Basta entrar em contato pelo WhatsApp!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-content">
+      <p class="section-label reveal" style="color:var(--gold-lt);">Pronto para começar?</p>
+      <h2 class="section-title reveal delay-1">Cuide da saúde de quem você ama</h2>
+      <p class="section-sub reveal delay-2">Cotação gratuita, sem compromisso. Nossos especialistas estão esperando por você agora.</p>
+      <div class="cta-actions reveal delay-3">
+        <a href="https://wa.me/message/RQE6YYE64XKAK1?text=Olá!%20Gostaria%20de%20fazer%20uma%20cotação%20de%20plano%20de%20saúde." class="btn btn--primary" target="_blank" rel="noopener" style="font-size:1rem;padding:1rem 2.2rem;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotar Agora pelo WhatsApp
+        </a>
+        <a href="tel:+5561995585240" class="btn btn--outline-white" style="font-size:1rem;padding:1rem 2.2rem;">
+          (61) 9 9558-5240
+        </a>
+      </div>
+      <p class="cta-phone reveal delay-4">Ou nos envie um e-mail: <a href="mailto:contato@saudeprime.com.br">contato@saudeprime.com.br</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.5 2 5.5 4 4 7c-.5 1-.8 2.2-.8 3.5 0 5 3.8 9.5 8.8 11.5 5-2 8.8-6.5 8.8-11.5 0-1.3-.3-2.5-.8-3.5C18.5 4 15.5 2 12 2zm0 2c2.5 0 4.8 1.5 5.8 3.8.4.8.6 1.7.6 2.7 0 4-3 7.8-6.4 9.7C8.6 18.3 5.6 14.5 5.6 10.5c0-1 .2-1.9.6-2.7C7.2 5.5 9.5 4 12 4z"/><path d="M10.5 7.5v3H7.5v3h3v3h3v-3h3v-3h-3v-3z"/></svg>
+          </div>
+          <div class="nav-logo-text">
+            <strong>Saúde Prime</strong>
+            <span>Seguros &amp; Consultoria</span>
+          </div>
+        </div>
+        <p>Corretora especializada em planos de saúde no DF para MEI, empresários e famílias. Cotação gratuita, processo 100% online.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Planos</h4>
+        <ul>
+          <li><a href="#plans">Individual</a></li>
+          <li><a href="#plans">Familiar</a></li>
+          <li><a href="#plans">Empresarial (PME)</a></li>
+          <li><a href="#plans">Adesão</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#benefits">Sobre Nós</a></li>
+          <li><a href="#how">Como Funciona</a></li>
+          <li><a href="#operators">Operadoras</a></li>
+          <li><a href="#faq">Dúvidas Frequentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/message/RQE6YYE64XKAK1" target="_blank">(61) 9 9558-5240</a></li>
+          <li><a href="mailto:contato@saudeprime.com.br">contato@saudeprime.com.br</a></li>
+          <li><a href="https://www.instagram.com/prime.segurosesaude/" target="_blank">@prime.segurosesaude</a></li>
+          <li><a href="#">Brasília – DF</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Saúde Prime de Seguros e Consultoria Ltda. Todos os direitos reservados.</p>
+      <p class="footer-cnpj">CNPJ: 55.988.654/0001-67</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/prime.segurosesaude/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://wa.me/message/RQE6YYE64XKAK1" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div id="wpp-float">
+  <div class="wpp-bubble">Fale conosco agora! 💬</div>
+  <a href="https://wa.me/message/RQE6YYE64XKAK1?text=Olá!%20Gostaria%20de%20uma%20cotação%20de%20plano%20de%20saúde." class="wpp-btn" target="_blank" rel="noopener" aria-label="WhatsApp" style="position:relative;">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <div class="wpp-pulse"></div>
+  </a>
+</div>
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => observer.observe(el));
+
+  // FAQ
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const menuClose = document.getElementById('menuClose');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // Form submit → WhatsApp
+  function submitForm(e) {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value;
+    const phone = document.getElementById('f-phone').value;
+    const lives = document.getElementById('f-lives').value;
+    const type = document.getElementById('f-type').value;
+    const msg = encodeURIComponent(`Olá! Me chamo ${name}, tenho interesse em uma cotação de plano de saúde.\n\n📋 Tipo: ${type}\n👥 Vidas: ${lives}\n📞 Meu contato: ${phone}`);
+    window.open(`https://wa.me/message/RQE6YYE64XKAK1?text=${msg}`, '_blank');
+  }
+
+  // Hide wpp bubble after 5s
+  setTimeout(() => {
+    const bubble = document.querySelector('.wpp-bubble');
+    if (bubble) { bubble.style.transition = 'opacity .5s'; bubble.style.opacity = '0'; setTimeout(() => bubble.remove(), 500); }
+  }, 5000);
+</script>
+</body>
+</html>
